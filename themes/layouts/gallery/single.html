@@ -1,0 +1,23 @@
+{{ define "main" }}
+<h1>{{ .Page.Title }}</h1>
+
+{{ if and (isset .Params "image") .Params.image }}
+    {{ $image := .Page.Resources.GetMatch .Params.image }}
+    {{ with $image }}
+        {{ $thumb := .Resize "1000x" }}
+        {{ printf `<img src="%s" alt="%s" class="img-responsive gallery-image">` $thumb.RelPermalink .Title | safeHTML }}
+    {{end}}
+{{ end }}
+
+<div class="next-prev-wrapper">
+{{ if  (.NextInSection) }}
+<a class="prev-btn" href="{{with .NextInSection}}{{.Permalink}}{{end}}">Previous</a>
+{{ end }}
+{{ if .PrevInSection }}
+<a class="next-btn" href="{{with .PrevInSection}}{{.Permalink}}{{end}}">Next</a>
+{{ end }}
+</div>
+<a href="{{ .Params.image }}">Higher resolution</a>
+{{ .Content }}
+
+{{ end }}

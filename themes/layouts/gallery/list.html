@@ -1,0 +1,79 @@
+{{ define "main" }}
+<h1>{{ .Page.Title }}</h1>
+{{ .Content }}
+
+<div class="row"> 
+  <div class="column">
+    {{ $.Scratch.Set "counter" 0}}
+    {{ range sort .Data.Pages "Date" "desc" }}
+        {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+
+        {{ if and (isset .Params "image") .Params.image }}
+            {{  if (eq (mod ($.Scratch.Get "counter") 3 ) 1) }}
+    <a href="{{ .Permalink }}" title="{{ .Title }}">
+      
+		  {{ $image := .Page.Resources.GetMatch .Params.image }}
+		  {{ with $image }}
+                  {{ $thumb := .Resize "400x" }}
+		  <div class="img-thumb">
+			<img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" class="img-responsive">
+		  </div>
+    </a>
+	    {{end}}
+
+	{{ end }}
+
+    {{ end }}
+    {{ end }}
+  </div>
+  
+  <div class="column">
+    {{ $.Scratch.Set "counter" 0 }}
+    {{ range sort .Data.Pages "Date" "desc" }}
+        {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+
+        {{ if and (isset .Params "image") .Params.image }}
+            {{  if (eq (mod  ($.Scratch.Get "counter") 3 ) 2) }}
+
+              <a href="{{ .Permalink }}" title="{{ .Title }}">
+
+		{{ $image := .Page.Resources.GetMatch .Params.image }}
+		{{ with $image }}
+                {{ $thumb := .Resize "400x" }}
+		<div class="img-thumb">
+                  <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" class="img-responsive">
+		  </div>
+              </a>
+	   {{end}}
+	{{ end }}
+    {{ end }}
+    {{ end }}
+  </div>
+
+
+  <div class="column">
+    {{ $.Scratch.Set "counter" 0 }}
+    {{ range sort .Data.Pages "Date" "desc" }}
+        {{ $.Scratch.Set "counter" (add ($.Scratch.Get "counter") 1) }}
+
+        {{ if and (isset .Params "image") .Params.image }}
+            {{  if (eq (mod  ($.Scratch.Get "counter") 3) 0) }}
+
+               <a href="{{ .Permalink }}" title="{{ .Title }}">
+
+		 {{ $image := .Page.Resources.GetMatch .Params.image }}
+		 {{ with $image }}
+                 {{ $thumb := .Resize "400x" }}
+		 <div class="img-thumb">
+
+                   <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }}" class="img-responsive">
+		 </div>
+
+               </a>
+	    {{end}}
+	   {{ end }}
+    {{ end }}
+    {{ end }}
+  </div>
+</div>
+{{ end }}

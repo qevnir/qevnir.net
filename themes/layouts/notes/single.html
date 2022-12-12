@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1 class="title">{{ .Title }}</h1>
+
+<i>
+  created: {{ .PublishDate.Format "Jan. 2, 2006" }},
+  modified: {{.Lastmod.Format "Jan. 2, 2006"}},
+  status: {{ .Params.status }}
+</i>
+<br/><br/>
+{{ .Content }}
+
+{{ end }}

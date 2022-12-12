@@ -1,0 +1,16 @@
+{{ define "main" }}
+<h1>{{ .Page.Title }}</h1>
+
+{{ .Content }}
+
+<div class="posts-list">
+{{ with .Site.GetPage "/notes" }}
+    {{ range (sort .Data.Pages "Title" "asc" (where .Pages ".Params.private" "!=" true))}}
+ 
+                <h4 class="notes-list-title"><a href="{{ .Permalink }}" title="{{ .Title }}">{{ .Title }}</a></h1>{{ end }}
+	{{ end }}
+
+</div>
+
+
+{{ end }}

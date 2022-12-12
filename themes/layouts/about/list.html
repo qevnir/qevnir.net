@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1>{{ .Page.Title }}</h1>
+
+<div class="about-content">
+{{ $image :=  .Params.image }}
+<p> {{ if $image }} <img class="profile" src="{{  $image }}">  {{ end }}
+    
+    {{ .Content }} </p>
+
+</div>
+
+{{ end }}
