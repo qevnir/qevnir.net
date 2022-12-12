@@ -1,0 +1,24 @@
+baseURL = 'http://qevnir.net/'
+languageCode = 'en-us'
+title = '/qevnir'
+theme = 'qev-theme'
+
+extensions = [
+  "laxHtmlBlocks", # laxer block handling... let's see what this does?
+  "hardLineBreak", # newlines result in line breaks
+]
+[params]
+  hardWraps = true
+  mathjax = true
+
+  # Cutting off the page title to two chars for mobile (console-demo -> co)
+  titleCutting = false
+
+
+  [[params.navlinks]]
+  name = "/about"
+  url = "about/"
+
+  [[params.navlinks]]
+  name = "/posts"
+  url = "posts/"
